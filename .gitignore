@@ -1,0 +1,10 @@
+/build*/
+/dist/
+/build-rpm/
+/prebuilt/
+/upstream/
+__pycache__/
+*.pyc
+/.idea/
+/.vscode/
+/.cache/

@@ -1,0 +1,28 @@
+name: Bug report
+description: Report a reproducible problem with the spacer task manager
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Versions and session
+      description: Distribution, architecture, Plasma version, Qt version, widget version, and Wayland or X11.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include grouping, sorting, spacer width, and whether the affected apps are pinned or running.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or screenshot
+      description: Share a small relevant excerpt. Remove personal launcher URLs and other private information.

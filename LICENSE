@@ -1,0 +1,11 @@
+Icons-Only Task Manager with Spacers is a fork of KDE Plasma's task manager.
+
+The applet and new fork code are licensed under GPL-2.0-or-later. Individual
+inherited files retain their original SPDX notices, including
+LGPL-2.0-or-later notices. Original KDE copyright notices are retained.
+
+Full license texts:
+  LICENSES/GPL-2.0-or-later.txt
+  LICENSES/LGPL-2.0-or-later.txt
+
+See UPSTREAM.md for the original source and fork provenance.

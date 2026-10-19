@@ -1,0 +1,7 @@
+{
+  "project_version": "@PROJECT_VERSION@",
+  "qt_version": "@Qt6Core_VERSION@",
+  "plasma_version": "@Plasma_VERSION@",
+  "system": "@CMAKE_SYSTEM_NAME@",
+  "architecture": "@CMAKE_SYSTEM_PROCESSOR@"
+}

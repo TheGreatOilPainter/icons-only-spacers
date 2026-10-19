@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.22)
+project(icontaskspacers VERSION 1.0.3 LANGUAGES CXX
+    HOMEPAGE_URL "https://github.com/TheGreatOilPainter/icons-only-spacers")
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(ECM 6.0 REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+include(KDEInstallDirs6)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(ECMQtDeclareLoggingCategory)
+
+find_package(Qt6 6.10 REQUIRED COMPONENTS Core Gui Qml Quick DBus Widgets)
+find_package(KF6 REQUIRED COMPONENTS Config CoreAddons I18n KIO Notifications Service WindowSystem)
+find_package(Plasma 6.7 REQUIRED)
+find_package(PlasmaActivities REQUIRED)
+find_package(PlasmaActivitiesStats REQUIRED)
+find_package(KSysGuard REQUIRED)
+find_package(LibNotificationManager REQUIRED)
+
+configure_file(cmake/build-info.json.in release-build-info-configured.json @ONLY)
+
+add_subdirectory(applet)
+
+include(CTest)
+if(BUILD_TESTING)
+    find_package(Python3 3.9 REQUIRED COMPONENTS Interpreter)
+    find_package(PlasmaQuick REQUIRED)
+    add_executable(spacer-smoke tests/smoke.cpp)
+    kde_target_enable_exceptions(spacer-smoke PRIVATE)
+    target_link_libraries(spacer-smoke PRIVATE Plasma::Plasma Plasma::PlasmaQuick Qt6::Widgets Qt6::Qml KF6::I18n KF6::ConfigGui)
+    add_dependencies(spacer-smoke org.matteo.icontaskspacers)
+    add_test(NAME spacer-smoke COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/run_smoke.py ${CMAKE_BINARY_DIR}/bin)
+    add_test(NAME spacer-pointer-drag COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/run_smoke.py ${CMAKE_BINARY_DIR}/bin --drag)
+    add_test(NAME spacer-failure-cleanup COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/run_smoke.py ${CMAKE_BINARY_DIR}/bin --fail-cleanup --expect-failure)
+    set_tests_properties(spacer-smoke spacer-pointer-drag spacer-failure-cleanup PROPERTIES TIMEOUT 60)
+endif()

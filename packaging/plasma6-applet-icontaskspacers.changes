@@ -1,0 +1,6 @@
+-------------------------------------------------------------------
+Mon Oct 19 00:00:00 UTC 2026 - TheGreatOilPainter <307100780+TheGreatOilPainter@users.noreply.github.com>
+
+- Prepare version 1.0.3 for the first public source release.
+- Add an openSUSE RPM recipe with native library dependencies and checks.
+- Retain the spacer behavior and drag performance fixes from 1.0.2.
